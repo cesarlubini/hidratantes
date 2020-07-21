@@ -1,0 +1,390 @@
+// Cores 
+$cor-secundaria: #D79843;
+$bg-negativo: #000;
+
+/*Geral*/
+@font-face{
+    font-family: "Didot Italic";
+    src: url('../fonts/didot-light-italic2.ttf') format('ttf');
+    
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+main {
+    max-width: 1920px;
+    margin:0 auto;
+}
+
+blockquote {
+    margin:0;
+}
+
+img {
+    max-width: 100%;
+    display:block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.m-auto {
+    margin: 0 auto;
+}
+
+@mixin btn {
+    border-radius: 5px;
+    padding:8px 48px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+
+}
+
+.btn-principal {
+    @include btn;
+    width: 120px;
+    display: block;
+    background-color: $cor-secundaria;
+
+    &:hover {
+        background-color: transparent;
+        color: $cor-secundaria;
+        border: 1px solid $cor-secundaria;
+    }
+}
+
+.btn-box-item {
+    @include btn;
+    background-color: $cor-secundaria;
+    display: block;
+    margin: 0 16px;
+    border-radius: 0 0 5px 5px;
+}
+
+.btn-outline {
+    @include btn;
+    background-color: transparent;
+    border:1px solid $cor-secundaria;
+    
+    
+    &:hover {
+        color: #000;
+        background-color: $cor-secundaria;
+        font-weight: 600;
+    }
+}
+
+// Mixins
+@mixin didotItalic {
+    font-family: 'Didot Italic';
+    font-style: italic;
+}
+
+// Placeholders
+%separador {
+    content:"";
+    display:block;
+    width: 60px;
+    height:2px;
+    margin:16px auto;
+    background-color: $cor-secundaria;
+}
+
+%titulos {
+    margin:0 16px;
+    font-size:20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/*Header*/
+.logo-container {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .logo {
+        max-width: 100%;
+        max-height: 60px;
+    }
+}
+
+/*Banner*/
+.banner-principal {
+    max-width: 100%;
+    height: 450px;
+    position: relative;
+    background-image: url('../img/banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+
+    @media (min-width: 900px) {
+        background-image: url('../img/banner-desktop.jpg');
+    }
+
+    .titulos-banner {
+        width: 100%;
+        max-width: 600px;
+        position:absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        .titulo-principal {
+            @extend %titulos;
+            color: #fff;
+
+            &::after {
+                @extend %separador;
+            }
+        }
+
+        .subtitulo-banner {
+            @extend %titulos;
+            color: #fff;
+            font-weight: 600;
+        }
+    }
+}
+
+/*Colageno & Elastina*/
+.colageno-elastina {
+    font-size:40px;
+    text-align:center;
+    overflow: hidden;
+    @include didotItalic;
+    
+    .colageno,
+    .elastina {
+        display: block;
+        position:relative
+    }
+
+    .colageno {
+        left:-24px;
+    }
+
+    .elastina {
+        right:-24px;
+    }
+
+    .mais {
+        font-size: 96px;
+        line-height:0px;
+        font-weight: 200;
+        color: $cor-secundaria;
+        position:relative;
+        top:16px;
+        left: 8px;
+    }
+}
+/*CARROSSEL*/
+.box-item {
+    border: 1px solid #E1E1E1;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    margin: 0 16px;
+    padding: 24px 16px;
+    min-height: 182px;
+
+    @media (min-width:600px) {
+        min-height: 240px;
+    }
+
+    @media (min-width:700px) {
+        min-height: 200px;
+    }
+
+    .nome-produto,
+    .desc-produto {
+        margin: 0;
+    }
+
+    .nome-produto {
+        text-align: center;
+
+        &::after {
+            @extend %separador;
+        }
+    }
+}
+
+/*Hidratantes Desktop*/
+
+.hidratantes-desktop {
+    max-width: 900px;
+    margin: 0 auto;
+
+    @media(max-width:899px) {
+        display: none;
+    }
+
+    .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 32px 0;
+    }
+
+    .box-item-desktop {
+        max-width: 460px;
+    }
+
+    .nome-produto,
+    .desc-produto {
+        margin:8px 0;
+    }
+
+    .nome-produto::after{
+        @extend %separador;
+        margin:8px 0;
+    }
+}
+
+.item.item-direita {
+    text-align: right;
+
+    .nome-produto::after{
+        margin: 8px 0 8px auto;
+    }
+
+    .btn-principal {
+        margin: 0 0 0 auto;
+    }
+}
+
+/*Citação*/
+.citacao-container-mobile {
+    @media(min-width:899px) {
+        display: none;
+    }
+
+    .citacao {
+        background-color:#000;
+        color:#fff;
+        padding:32px 16px;
+        text-align:center;
+    
+        p {
+            margin:0;
+            font-style: italic;
+            &::after {
+                @extend %separador;
+            }
+        }
+    
+        cite {
+            font-style: normal;
+        }
+    }
+}
+
+.bg-citacao {
+    background-color: #000;
+}
+
+.citacao-container-desktop {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 32px;
+
+    @media(max-width:899px) {
+        display: none;
+    }
+
+    .foto-citacao {
+        width: 50%;
+    }
+
+    .citacao {
+        color: #fff;
+        text-align: center;
+        width: 50%;
+    
+        p {
+            margin:0;
+            font-style: italic;
+            font-size: 20px;
+            &::after {
+                @extend %separador;
+            }
+        }
+    
+        cite {
+            font-style: normal;
+        }
+    }
+}
+
+
+/*Método Renata França*/
+
+.metodo-renata-container {
+    @media (min-width:900px) {
+        display: flex;
+    }
+
+    .foto-renata{
+        background-image: url(../img/renata-franca.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 400px;
+
+        @media (min-width:900px) {
+            width: 50%;
+        }
+    } 
+
+    .metodo-renata {
+        background-color:$bg-negativo;
+        background-image: url('../img/mapa-mundi.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        color:#fff;
+        text-align:center;
+        padding:32px 16px;
+
+        @media (min-width:900px) {
+            width: 50%;
+        }
+    
+        .metodo-item{
+            margin:40px auto;
+        }
+    }
+}
+
+
+
+.titulo-sessao {
+    @extend %titulos;
+    font-weight: 600;
+
+    &::after {
+        @extend %separador;
+    }
+}
+
+.subtitulo-sessao {
+    font-style:italic;
+    font-size: 16px;
+    text-align: center;
+}
